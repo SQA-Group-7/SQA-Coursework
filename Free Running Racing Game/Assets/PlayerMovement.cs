@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private bool _jumpPressed;
     private float _horizontalInput;
     private float _verticalInput;
-    private float _zAxisInput;
 
     private Rigidbody _rigidBody;
 
