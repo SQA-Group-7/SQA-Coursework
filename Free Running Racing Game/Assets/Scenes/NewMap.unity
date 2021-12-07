@@ -1021,8 +1021,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: Speed
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: JumpKey
       value: space
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: JumpPower
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: GroundLevel
@@ -1099,6 +1107,10 @@ PrefabInstance:
     - target: {fileID: 7184468904946478073, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184468904946478073, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7184468904946478073, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
@@ -1414,8 +1426,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: Speed
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: JumpKey
       value: ','
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: JumpPower
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: GroundLevel
@@ -1495,7 +1515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7184468904946478073, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7184468904946478073, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
