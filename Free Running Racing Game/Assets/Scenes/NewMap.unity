@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 1321427979}
   m_Layer: 0
   m_Name: Jumper
-  m_TagString: Untagged
+  m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -816,6 +816,8 @@ MonoBehaviour:
   - {fileID: 1910799614}
   AgroRange: 6
   Speed: 8
+  RoamRange: 3
+  PushForce: 10000
 --- !u!1001 &1352843099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1126,6 +1128,10 @@ PrefabInstance:
     - target: {fileID: 7184468903092581804, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184468903092581804, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7184468903092581805, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_RootOrder
@@ -1646,6 +1652,10 @@ PrefabInstance:
     - target: {fileID: 7184468903092581804, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_Name
       value: Player 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184468903092581804, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7184468903092581805, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_RootOrder
