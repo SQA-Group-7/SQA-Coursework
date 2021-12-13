@@ -9,13 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public float JumpPower;
     public float GroundLevel = 1.0f;
 
+    [SerializeField] private Transform _groundCheckTransform;
+    [SerializeField] private LayerMask _playerMask;
+
     public string[] DirectionKeys;
     public string JumpKey;
 
     private bool _jumpPressed;
     private float _horizontalInput;
     private float _verticalInput;
-    private bool _canJump = true;
+
 
     private Rigidbody _rigidBody;
 
@@ -70,11 +73,10 @@ public class PlayerMovement : MonoBehaviour
             _horizontalInput = 0.0f;
         }
 
-                
-        if (Input.GetKey(JumpKey) && _canJump)
+
+        if (Input.GetKey(JumpKey))
         {
             _jumpPressed = true;
-            _canJump = false;
         }
     }
 
@@ -84,9 +86,10 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidBody.velocity = new Vector3(_horizontalInput * Speed, _rigidBody.velocity.y, _verticalInput * Speed);
 
-        if (transform.position.y == GroundLevel)
+        if (Physics.OverlapSphere(_groundCheckTransform.position, 0.2f, _playerMask).Length == 0)
         {
-            _canJump = true;
+            // not colliding with anything so player is in the air - so prevent from jumping again 
+            return;
         }
 
         if (_jumpPressed)
