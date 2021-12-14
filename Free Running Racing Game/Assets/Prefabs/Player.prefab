@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8433a466512aa4ba81214f61ea7fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
-  JumpPower: 5
+  Speed: 12
+  JumpPower: 8
   GroundLevel: 1
   _groundCheckTransform: {fileID: 2930116199901131457}
   _playerMask:
@@ -274,9 +274,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.5
     width: 1
-    height: 1
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
