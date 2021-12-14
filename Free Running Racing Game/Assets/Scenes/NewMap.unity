@@ -489,6 +489,10 @@ PrefabInstance:
       value: Jumper (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6975201087086214942, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
+      propertyPath: PushForce
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975201087086214942, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
       propertyPath: Players.Array.data[0]
       value: 
       objectReference: {fileID: 1630572622}
@@ -1687,6 +1691,10 @@ PrefabInstance:
     - target: {fileID: 6975201087086214941, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
       propertyPath: m_Name
       value: Jumper
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975201087086214942, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
+      propertyPath: PushForce
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 6975201087086214942, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
       propertyPath: Players.Array.data[0]
