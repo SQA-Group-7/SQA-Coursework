@@ -52,15 +52,18 @@ public class RegionDetection : MonoBehaviour
             //Display win/lose text
             TextMeshProUGUI p1Text = GameObject.Find("Player1Text").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI p2Text = GameObject.Find("Player2Text").GetComponent<TextMeshProUGUI>();
+            GameController controller = GameObject.FindWithTag("GameController").GetComponent<GameController>();
             if (gameObject.name == "Player 1")
             {
                 p1Text.text = "You WIN";
                 p2Text.text = "You LOSE";
+                controller.FinishGame(1);
             }
             else if (gameObject.name == "Player 2")
             {
                 p1Text.text = "You LOSE";
                 p2Text.text = "You WIN";
+                controller.FinishGame(2);
             }
             p1Text.enabled = true;
             p2Text.enabled = true;

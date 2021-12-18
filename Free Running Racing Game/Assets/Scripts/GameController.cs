@@ -27,6 +27,22 @@ public class GameController : MonoBehaviour
 
     }
 
+    public void FinishGame(int winningPlayer) {
+
+        GameObject timer = GameObject.Find("Canvas/Timer");
+        float finishTime = 0;
+        if (timer != null)
+        {
+            timer.GetComponent<Timer>().PauseTimer();
+            finishTime = timer.GetComponent<Timer>().GetTime();
+            timer.GetComponent<Timer>().PauseTimer();
+        }
+        else
+        {
+            Debug.LogError("Timer object is missing!");
+        }
+    }
+
     //Counting down
     IEnumerator PrepareGame()
     {
@@ -50,6 +66,17 @@ public class GameController : MonoBehaviour
 
         p1Text.text = "GO!";
         p2Text.text = "GO!";
+
+        //Start the timer
+        GameObject timer = GameObject.Find("Canvas/Timer");
+        if (timer != null)
+        {
+            timer.GetComponent<Timer>().StartTimer();
+        }
+        else
+        {
+            Debug.LogError("Timer object is missing!");
+        }
 
         //Change the status, players will gain controls over the charaters
         GameStatus = GameStatus.Started;
