@@ -15,7 +15,7 @@ public enum CraneStatus
 }
 public class CraneController : MonoBehaviour
 {
-    public CraneStatus CraneStatus { get; set; } = CraneStatus.RotateCrane;
+    public CraneStatus CraneMovementMode = CraneStatus.Still;
 
     //Defines the speed of rotating/moving
     public int Speed = 50;
@@ -102,7 +102,7 @@ public class CraneController : MonoBehaviour
     {
 
         //Rotate the top part of the crane
-        if (CraneStatus == CraneStatus.RotateCrane)
+        if (CraneMovementMode == CraneStatus.RotateCrane)
         {
             //Check whether it is a top group.
             foreach (Transform child in transform)
@@ -114,13 +114,13 @@ public class CraneController : MonoBehaviour
             }
         }
         //Rotate the load group
-        else if (CraneStatus == CraneStatus.RotateLoad)
+        else if (CraneMovementMode == CraneStatus.RotateLoad)
         {
             Transform platformTransform = transform.Find("CraneTopGroup/LoadGroup/Platform");
             transform.Find("CraneTopGroup/LoadGroup").RotateAround(platformTransform.position, Vector3.up, Speed * Time.deltaTime);
         }
         //Move the load group up and down
-        else if (CraneStatus == CraneStatus.MoveLoadVertically)
+        else if (CraneMovementMode == CraneStatus.MoveLoadVertically)
         {
             Transform loadGroupTransform = transform.Find("CraneTopGroup/LoadGroup");
             Transform cableGroupTransform = transform.Find("CraneTopGroup/HookGroup/CableGroup");
@@ -152,7 +152,7 @@ public class CraneController : MonoBehaviour
             }
         }
         //Move the load along the arm of the crane.
-        else if (CraneStatus == CraneStatus.MoveLoadHorizontally)
+        else if (CraneMovementMode == CraneStatus.MoveLoadHorizontally)
         {
             Transform loadGroupTransform = transform.Find("CraneTopGroup/LoadGroup");
             Transform hookGroupTransform = transform.Find("CraneTopGroup/HookGroup");

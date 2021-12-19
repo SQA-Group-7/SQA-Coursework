@@ -3877,10 +3877,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2365c13f409e9c04db5dbbed05627fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cranestatus: 3
-  speed: 50
-  upperBound: 0
-  lowerBound: -10
+  Speed: 50
+  UpperBound: 0
+  LowerBound: -10
 --- !u!1 &8821740766528502334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4005,7 +4004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8821740767249643209
 Transform:
   m_ObjectHideFlags: 0
