@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (Input.GetKey(JumpKey))
+        if (Input.GetKeyDown(JumpKey))
         {
             _jumpPressed = true;
         }
@@ -83,16 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidBody.velocity = new Vector3(_horizontalInput * Speed, _rigidBody.velocity.y, _verticalInput * Speed);
 
-        Collider[] colliders = Physics.OverlapSphere(_groundCheckTransform.position, 0.2f, _playerMask);
-
-        // Debug.Log(this.name + " Collisions: " + colliders.Length);
-
-        // foreach (var x in colliders)
-        // {
-        //     Debug.Log(this.name + " Collider: " + x.ToString());
-        // }
-
-        if (colliders.Length == 0)
+        if (Physics.OverlapSphere(_groundCheckTransform.position, 0.2f, _playerMask).Length == 0)
         {
             // not colliding with anything so player is in the air - so prevent from jumping again 
             return;
@@ -100,7 +91,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (_jumpPressed)
         {
-            Debug.Log("Adding jump force " + Vector3.up * JumpPower);
             _rigidBody.AddForce(Vector3.up * JumpPower, ForceMode.VelocityChange);
             _jumpPressed = false;
         }

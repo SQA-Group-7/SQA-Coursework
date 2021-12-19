@@ -198,7 +198,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: JumpPower
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: _playerMask.m_Bits
@@ -1557,6 +1557,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: Speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184468903092581794, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: JumpKey
       value: ','
       objectReference: {fileID: 0}
@@ -1602,7 +1606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7184468903092581804, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7184468903092581804, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: m_TagString
