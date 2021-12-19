@@ -69,7 +69,7 @@ public class RegionDetection : MonoBehaviour
             p2Text.enabled = true;
 
             //Hide the text after 5 seconds.
-            Invoke("HideResultText", 5f);
+            //Invoke("HideResultText", 5f);
         }
         //If the player touches the checkpoint region.
         else if (other.gameObject.tag == "Checkpoint")

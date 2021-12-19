@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 //Enums for the current status of the gmae.
 //Started: Countdown has finished and the players are controlling the charaters.
@@ -81,6 +82,12 @@ public class GameController : MonoBehaviour
         {
             Debug.LogError("Timer object is missing!");
         }
+
+        Invoke("ReturnToMainMenu", 5f);
+    }
+
+    void ReturnToMainMenu() {
+        SceneManager.LoadScene("MainMenu");
     }
 
     //Counting down
