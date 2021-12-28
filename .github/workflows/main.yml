@@ -1,8 +1,6 @@
 name: GameCI Template 🎮
 
-on: 
-  push:
-  workflow_dispatch:
+on: push
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -10,7 +8,7 @@ env:
 jobs:
   requestManualActivationFile:
     name: Request Manual Activation File
-    runs-on: Ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -21,9 +19,10 @@ jobs:
         with:
           name: Manual Activation File
           path: $({ steps.getManualLicenseFile.outputs.filepath })
+          
   testRunner:
     name: Test in ${{ matrix.testMode }} ✨
-    runs-on: Ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -57,7 +56,7 @@ jobs:
           restore-keys: |
             Library-test-project-
             Library-
-      - uses: game-ci/unity-test-runner@v2.0-alpha-5
+      - uses: game-ci/unity-test-runner@v2
         id: testRunner
         with:
           testMode: ${{ matrix.testMode }}
@@ -72,7 +71,7 @@ jobs:
   buildWebGL:
     needs: testRunner
     name: Build for WebGL 🖥️
-    runs-on: Ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
     steps:
@@ -113,7 +112,7 @@ jobs:
   buildWindows:
     needs: testRunner
     name: Build for Windows 🖥️
-    runs-on: Ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
     steps:
@@ -155,7 +154,7 @@ jobs:
   deployPages:
     needs: buildWebGL
     name: Deploy to Github Pages 🚀
-    runs-on: Ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
