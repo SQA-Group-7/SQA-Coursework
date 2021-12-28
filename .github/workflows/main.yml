@@ -10,7 +10,7 @@ env:
 jobs:
   requestManualActivationFile:
     name: Request Manual Activation File
-    runs-on: Focal Fossa
+    runs-on: Ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
 
@@ -23,7 +23,7 @@ jobs:
           path: $({ steps.getManualLicenseFile.outputs.filepath })
   testRunner:
     name: Test in ${{ matrix.testMode }} ✨
-    runs-on: Focal Fossa
+    runs-on: Ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
@@ -72,7 +72,7 @@ jobs:
   buildWebGL:
     needs: testRunner
     name: Build for WebGL 🖥️
-    runs-on: Focal Fossa
+    runs-on: Ubuntu-20.04
     strategy:
       fail-fast: false
     steps:
@@ -113,7 +113,7 @@ jobs:
   buildWindows:
     needs: testRunner
     name: Build for Windows 🖥️
-    runs-on: Focal Fossa
+    runs-on: Ubuntu-20.04
     strategy:
       fail-fast: false
     steps:
@@ -155,7 +155,7 @@ jobs:
   deployPages:
     needs: buildWebGL
     name: Deploy to Github Pages 🚀
-    runs-on: Focal Fossa
+    runs-on: Ubuntu-20.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
