@@ -5,15 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float Speed;
-    public float JumpPower;
-    public float GroundLevel = 1.0f;
-
+    [SerializeField] private float Speed;
+    [SerializeField] private float JumpPower;
     [SerializeField] private Transform _groundCheckTransform;
     [SerializeField] private LayerMask _playerMask;
-
-    public string[] DirectionKeys;
-    public string JumpKey;
+    [SerializeField] private string[] DirectionKeys;
+    [SerializeField] private string JumpKey;
 
     private bool _jumpPressed;
     private float _horizontalInput;
@@ -82,6 +79,10 @@ public class PlayerMovement : MonoBehaviour
                 _jumpPressed = true;
             }
 
+
+        if (Input.GetKeyDown(JumpKey))
+        {
+            _jumpPressed = true;
         }
     }
 
