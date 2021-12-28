@@ -91,6 +91,7 @@ jobs:
             Library-
       - uses: game-ci/unity-builder@v2
         with:
+          projectPath: FreeRunningRacingGame/
           targetPlatform: WebGL
 
       - uses: actions/upload-artifact@v2
@@ -132,6 +133,7 @@ jobs:
             Library-
       - uses: game-ci/unity-builder@v2
         with:
+          projectPath: FreeRunningRacingGame/
           targetPlatform: StandaloneWindows64
 
       - uses: actions/upload-artifact@v2
