@@ -4,7 +4,7 @@ on: push
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-  PROJECT_PATH: '"Free Running Racing Game/"'
+  PROJECT_PATH: '"Free Running Racing Game"'
 
 jobs:
   testRunner:
