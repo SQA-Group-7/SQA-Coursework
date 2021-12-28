@@ -3,52 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//Enums for the status of the crane
+//Still: The crane will not move.
+//RotateCrane: The upper part of the crane will rotate.
+//RotateLoad: Only the load part will be rotating.
+//MoveLoadVertically: The load part will move up and down.
+//MoveLoadHorizontally: The load part will move along the arm of the crane.
+public enum CraneStatus
+{
+    Still, RotateCrane, RotateLoad, MoveLoadVertically, MoveLoadHorizontally
+}
 public class CraneController : MonoBehaviour
 {
+    public CraneStatus CraneMovementMode = CraneStatus.Still;
 
-    public enum CraneStatus
-    {
-        STILL, ROTATE_CRANE, ROTATE_LOAD, MOVE_LOAD_VERTICAL, MOVE_LOAD_HORIZONTAL
-    }
+    //Defines the speed of rotating/moving
+    public int Speed = 50;
 
-    Transform craneBase;
-    public CraneStatus cranestatus = CraneStatus.ROTATE_CRANE;
-    public int speed = 50;
-    public int upperBound = 0;
-    public int lowerBound = -10;
-    Boolean movingUp = false;
+    //Defines the range in which the crane will move up/down or along the crane arm.
+    public int UpperBound = 0;
+    public int LowerBound = -10;
 
-    /*
-        public void SetToStill()
-        {
-            cranestatus = CraneStatus.STILL;
-        }
+    //Tells whether the crane is currently move up/outwards.
+    private Boolean _movingUp = false;
 
-        public void SetToRotateCrane()
-        {
-            cranestatus = CraneStatus.ROTATE_CRANE;
-        }
-        public void SetToRotateLoad()
-        {
-            cranestatus = CraneStatus.ROTATE_LOAD;
-        }
-        public void SetToMoveLoad()
-        {
-            cranestatus = CraneStatus.MOVE_LOAD_HORIZONTAL;
-        }
-        */
+    private Transform _craneBase;
 
-
+    //Increases the height of the whole crane by adding one base frame object at the bottom.
     public void IncreaseHeight()
     {
+
+        //Get the relavent objects
         GameObject baseFrame = transform.Find("Prefabs/CraneBaseFrame").gameObject;
         GameObject duplicate = Instantiate(baseFrame);
+
+        //Obtain the heigh of one frame
         float height = transform.Find("CraneBaseGroup/CraneBaseFrame0").position.y - transform.Find("CraneBaseGroup/CraneBaseFrame1").position.y;
 
         for (int i = 1; i < 100; i++)
         {
+            //Find the bottomest base frame of the whole crane.
             if (!transform.Find("CraneBaseGroup/CraneBaseFrame" + i))
             {
+                //Move the whole crane upwards, and then add a base frame at the bottom
                 duplicate.name = "CraneBaseFrame" + i;
                 duplicate.transform.parent = transform.Find("CraneBaseGroup");
                 Transform above = transform.Find("CraneBaseGroup/CraneBaseFrame" + (i - 1));
@@ -62,15 +59,19 @@ public class CraneController : MonoBehaviour
 
     }
 
+    //Decrease the height of the whole frame by removing the bottom base frame.
     public void DecreaseHeight()
     {
-        Debug.Log("Test");
+
+        //Get the height of the base frame.
         float height = transform.Find("CraneBaseGroup/CraneBaseFrame0").position.y - transform.Find("CraneBaseGroup/CraneBaseFrame1").position.y;
 
         for (int i = 1; i < 100; i++)
         {
+            //Find the bottom base frame.
             if (!transform.Find("CraneBaseGroup/CraneBaseFrame" + i))
             {
+                //Destroy the base frame and move the whole crane downwards.
                 DestroyImmediate(transform.Find("CraneBaseGroup/CraneBaseFrame" + (i - 1)).gameObject);
                 transform.Translate(new Vector3(0, height * -1, 0));
                 break;
@@ -78,16 +79,17 @@ public class CraneController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
+    //Start is called before the first frame update
     void Start()
     {
+        //Find the crane base group.
         foreach (Transform child in transform)
         {
             foreach (Transform grandChild in child.transform)
             {
                 if (grandChild.name.Contains("BaseFrame"))
                 {
-                    craneBase = grandChild;
+                    _craneBase = grandChild;
                     break;
                 }
             }
@@ -98,48 +100,87 @@ public class CraneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cranestatus == CraneStatus.ROTATE_CRANE)
+
+        //Rotate the top part of the crane
+        if (CraneMovementMode == CraneStatus.RotateCrane)
         {
+            //Check whether it is a top group.
             foreach (Transform child in transform)
             {
                 if (!child.name.Contains("CraneBaseGroup"))
                 {
-                    child.transform.RotateAround(craneBase.position, Vector3.up, speed * Time.deltaTime);
+                    child.transform.RotateAround(_craneBase.position, Vector3.up, Speed * Time.deltaTime);
                 }
             }
         }
-        else if (cranestatus == CraneStatus.ROTATE_LOAD)
+        //Rotate the load group
+        else if (CraneMovementMode == CraneStatus.RotateLoad)
         {
             Transform platformTransform = transform.Find("CraneTopGroup/LoadGroup/Platform");
-            transform.Find("CraneTopGroup/LoadGroup").RotateAround(platformTransform.position, Vector3.up, speed * Time.deltaTime);
+            transform.Find("CraneTopGroup/LoadGroup").RotateAround(platformTransform.position, Vector3.up, Speed * Time.deltaTime);
         }
-        else if (cranestatus == CraneStatus.MOVE_LOAD_VERTICAL) {
+        //Move the load group up and down
+        else if (CraneMovementMode == CraneStatus.MoveLoadVertically)
+        {
             Transform loadGroupTransform = transform.Find("CraneTopGroup/LoadGroup");
             Transform cableGroupTransform = transform.Find("CraneTopGroup/HookGroup/CableGroup");
-            if (loadGroupTransform.localPosition.y < upperBound && movingUp) {
-                loadGroupTransform.Translate(new Vector3(0,speed / 300f, 0));
-                cableGroupTransform.localScale += new Vector3(0,speed / -1300f, 0);
-            } else if (loadGroupTransform.localPosition.y > lowerBound && !movingUp){
-                loadGroupTransform.Translate(new Vector3(0,speed / -300f, 0));
-                cableGroupTransform.localScale += new Vector3(0,speed / 1300f, 0);
-            } else if (loadGroupTransform.localPosition.y >= upperBound && movingUp) {
-                movingUp = false;
-            } else if (loadGroupTransform.localPosition.y <= lowerBound && !movingUp) {
-                movingUp = true;
+            //If it's moving up and it hasn't reached the highest point yet
+            if (loadGroupTransform.localPosition.y < UpperBound && _movingUp)
+            {
+                //Move up and stretch the cables.
+                loadGroupTransform.Translate(new Vector3(0, Speed / 300f, 0));
+                cableGroupTransform.localScale += new Vector3(0, Speed / -1300f, 0);
             }
-        } else if (cranestatus == CraneStatus.MOVE_LOAD_HORIZONTAL) {
+            //If it's moving down and it has't reached the lowest point yet.
+            else if (loadGroupTransform.localPosition.y > LowerBound && !_movingUp)
+            {
+                //Move down and shrink the cables.
+                loadGroupTransform.Translate(new Vector3(0, Speed / -300f, 0));
+                cableGroupTransform.localScale += new Vector3(0, Speed / 1300f, 0);
+            }
+            //If it's moving up but it has reached the highest point.
+            else if (loadGroupTransform.localPosition.y >= UpperBound && _movingUp)
+            {
+                //Change the status to moving down.
+                _movingUp = false;
+            }
+            //If it's moving down but it has reached the lowest point.
+            else if (loadGroupTransform.localPosition.y <= LowerBound && !_movingUp)
+            {
+                //Change the status to move up.
+                _movingUp = true;
+            }
+        }
+        //Move the load along the arm of the crane.
+        else if (CraneMovementMode == CraneStatus.MoveLoadHorizontally)
+        {
             Transform loadGroupTransform = transform.Find("CraneTopGroup/LoadGroup");
             Transform hookGroupTransform = transform.Find("CraneTopGroup/HookGroup");
-            if (loadGroupTransform.localPosition.x < upperBound && movingUp) {
-                loadGroupTransform.localPosition += new Vector3(speed / 300f,0, 0);
-                hookGroupTransform.localPosition += new Vector3(speed / 300f,0, 0);
-            } else if (loadGroupTransform.localPosition.x > lowerBound && !movingUp){
-                loadGroupTransform.localPosition += new Vector3(speed / -300f,0, 0);
-                hookGroupTransform.localPosition += new Vector3(speed / -300f,0, 0);
-            } else if (loadGroupTransform.localPosition.x >= upperBound && movingUp) {
-                movingUp = false;
-            } else if (loadGroupTransform.localPosition.x <= lowerBound && !movingUp) {
-                movingUp = true;
+            //If it's moving outwards but it hasn't reached the farthest point yet.
+            if (loadGroupTransform.localPosition.x < UpperBound && _movingUp)
+            {
+                //Move outwards.
+                loadGroupTransform.localPosition += new Vector3(Speed / 300f, 0, 0);
+                hookGroupTransform.localPosition += new Vector3(Speed / 300f, 0, 0);
+            }
+            //If it's moving inwards but it hasn't reached the closest point yet.
+            else if (loadGroupTransform.localPosition.x > LowerBound && !_movingUp)
+            {
+                //Move inwards
+                loadGroupTransform.localPosition += new Vector3(Speed / -300f, 0, 0);
+                hookGroupTransform.localPosition += new Vector3(Speed / -300f, 0, 0);
+            }
+            //If it's moving outwards but it has reached the farthest point
+            else if (loadGroupTransform.localPosition.x >= UpperBound && _movingUp)
+            {
+                //Change status to moving inwards.
+                _movingUp = false;
+            }
+            //If it's moving inwards but it has reached the closest point
+            else if (loadGroupTransform.localPosition.x <= LowerBound && !_movingUp)
+            {
+                //Change status to moving outwards.
+                _movingUp = true;
             }
         }
     }
