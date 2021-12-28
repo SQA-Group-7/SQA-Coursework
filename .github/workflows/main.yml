@@ -34,6 +34,10 @@ jobs:
           git lfs pull
           git add .
           git reset --hard
+
+      - name: Change file directory
+        run: |
+          cd Free\ Running\ Racing\ Game/
       - name: Restore Library cache
         uses: actions/cache@v2
         with:
@@ -45,7 +49,7 @@ jobs:
       - uses: game-ci/unity-test-runner@v2
         id: testRunner
         with:
-          projectPath: 'Free Running Racing Game'
+          projectPath: ${{ matrix.projectPath }}
           testMode: ${{ matrix.testMode }}
           checkName: ${{ matrix.testMode }} test results
           githubToken: ${{ secrets.GITHUB_TOKEN }}
