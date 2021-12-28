@@ -15,6 +15,7 @@ public class GameData
 
     private List<int> victories = new List<int>();
     private List<float> finishTimes = new List<float>();
+    private MenuStatus MenuStatus = MenuStatus.Title;
 
     public int getPlayerVictoryCount(int playerID) {
         int count = 0;
@@ -39,6 +40,14 @@ public class GameData
 
     public List<int> getVictories() {
         return victories;
+    }
+
+    public MenuStatus GetMenuStatus() {
+        return MenuStatus;
+    }
+
+    public void SetMenuStatus(MenuStatus ms) {
+        MenuStatus = ms;
     }
     
 }

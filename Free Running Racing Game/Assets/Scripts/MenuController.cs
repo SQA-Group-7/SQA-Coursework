@@ -4,11 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class MenuController : MonoBehaviour
+public enum MenuStatus
 {
+    Title, MapSelection
+}
+
+public class MenuController : MonoBehaviour
+{   
     public TextMeshProUGUI player1Score;
     public TextMeshProUGUI player2Score;
     public TextMeshProUGUI recentMatches;
+
+    public GameObject titleScreen;
+    public GameObject menuScreen;
+
 
     public void StartGame() {
         SceneManager.LoadScene("EpicMap");
@@ -43,12 +52,22 @@ public class MenuController : MonoBehaviour
         }
 
         recentMatches.text = recentMatchesText;
-        
+
+        if (GameData.get().GetMenuStatus() == MenuStatus.MapSelection) changeToMapSelectionScreen();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameData.get().GetMenuStatus() == MenuStatus.Title && Input.anyKey) {
+            changeToMapSelectionScreen();
+        }
+    }
+
+    private void changeToMapSelectionScreen() {
+        titleScreen.SetActive(false);
+        menuScreen.SetActive(true);
+        GameData.get().SetMenuStatus(MenuStatus.MapSelection);
     }
 }
