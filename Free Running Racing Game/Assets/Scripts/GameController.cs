@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 //Preparing: Counting down.
 public enum GameStatus
 {
-    Started, Preparing
+    Started, Preparing, Finished
 }
 public class GameController : MonoBehaviour
 {
@@ -70,6 +70,10 @@ public class GameController : MonoBehaviour
     public void FinishGame(int winningPlayer)
     {
 
+        if (GameStatus != GameStatus.Started) return;
+
+        GameStatus = GameStatus.Finished;
+        
         GameObject timer = GameObject.Find("Canvas/Timer");
         float finishTime = 0;
         if (timer != null)
@@ -82,6 +86,8 @@ public class GameController : MonoBehaviour
         {
             Debug.LogError("Timer object is missing!");
         }
+
+        GameData.get().registerVictory(winningPlayer, timer.GetComponent<Timer>().GetTime());
 
         Invoke("ReturnToMainMenu", 5f);
     }

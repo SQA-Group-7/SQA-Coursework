@@ -74,15 +74,12 @@ public class PlayerMovement : MonoBehaviour
             }
 
 
-            if (Input.GetKey(JumpKey))
+
+            if (Input.GetKeyDown(JumpKey))
             {
                 _jumpPressed = true;
             }
 
-
-        if (Input.GetKeyDown(JumpKey))
-        {
-            _jumpPressed = true;
         }
     }
 
