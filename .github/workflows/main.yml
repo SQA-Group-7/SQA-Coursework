@@ -4,6 +4,7 @@ on: push
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  PROJECT_PATH: '"Free Running Racing Game/"'
 
 jobs:
   testRunner:
@@ -45,7 +46,7 @@ jobs:
       - uses: game-ci/unity-test-runner@v2
         id: testRunner
         with:
-          projectPath: ${{ /SQA-Coursework/Free Running Racing Game/ }}
+          projectPath: ${{ PROJECT_PATH }}
           testMode: ${{ matrix.testMode }}
           checkName: ${{ matrix.testMode }} test results
           githubToken: ${{ secrets.GITHUB_TOKEN }}
