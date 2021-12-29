@@ -9,11 +9,12 @@ using UnityEngine.SceneManagement;
 //Preparing: Counting down.
 public enum GameStatus
 {
-    Started, Preparing
+    Started, Preparing, Finished
 }
 public class GameController : MonoBehaviour
 {
     public GameStatus GameStatus { get; set; } = GameStatus.Preparing;
+    public Animator menuAnimator;
 
     //For storing the componenet/object references
     private TextMeshProUGUI _p1Rank;
@@ -70,6 +71,10 @@ public class GameController : MonoBehaviour
     public void FinishGame(int winningPlayer)
     {
 
+        if (GameStatus != GameStatus.Started) return;
+
+        GameStatus = GameStatus.Finished;
+
         GameObject timer = GameObject.Find("Canvas/Timer");
         float finishTime = 0;
         if (timer != null)
@@ -83,7 +88,15 @@ public class GameController : MonoBehaviour
             Debug.LogError("Timer object is missing!");
         }
 
+        GameData.get().registerVictory(winningPlayer, timer.GetComponent<Timer>().GetTime());
+
+        Invoke("StartLoadingAnimation", 4f);
+
         Invoke("ReturnToMainMenu", 5f);
+    }
+
+     void StartLoadingAnimation() {
+        menuAnimator.SetTrigger("StartLoading");
     }
 
     void ReturnToMainMenu() {
