@@ -18,8 +18,16 @@ public class MenuController : MonoBehaviour
     public GameObject titleScreen;
     public GameObject menuScreen;
 
+    public Animator menuAnimator;
+
 
     public void StartGame() {
+        menuAnimator.SetTrigger("GoToGame");
+        StartCoroutine(StartGameHelper());
+    }
+
+    private IEnumerator StartGameHelper() {
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("EpicMap");
     }
 
@@ -53,7 +61,8 @@ public class MenuController : MonoBehaviour
 
         recentMatches.text = recentMatchesText;
 
-        if (GameData.get().GetMenuStatus() == MenuStatus.MapSelection) changeToMapSelectionScreen();
+        if (GameData.get().GetMenuStatus() == MenuStatus.MapSelection) {menuAnimator.SetTrigger("ReturnFromGame");
+        Debug.Log("HELLO");}
 
     }
 
@@ -66,8 +75,9 @@ public class MenuController : MonoBehaviour
     }
 
     private void changeToMapSelectionScreen() {
-        titleScreen.SetActive(false);
-        menuScreen.SetActive(true);
+        // titleScreen.SetActive(false);
+        // menuScreen.SetActive(true);
+        menuAnimator.SetTrigger("StartTitleToMenu");
         GameData.get().SetMenuStatus(MenuStatus.MapSelection);
     }
 }
