@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private string JumpKey;
 
     private bool _jumpPressed;
+    private bool _doubleJumped = false;
     private float _horizontalInput;
     private float _verticalInput;
     private Rigidbody _rigidBody;
@@ -86,20 +87,35 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is called once every physics update (100 times per second - 100hz default)
     void FixedUpdate()
     {
-
         _rigidBody.velocity = new Vector3(_horizontalInput * Speed, _rigidBody.velocity.y, _verticalInput * Speed);
+
+        if (!_jumpPressed) return;
 
         if (Physics.OverlapSphere(_groundCheckTransform.position, 0.2f, _playerMask).Length == 0)
         {
             // not colliding with anything so player is in the air - so prevent from jumping again 
-            return;
+            if (_doubleJumped)
+                return;
+            else
+            {
+                Jump();
+                _jumpPressed = false;
+                _doubleJumped = true;
+                return;
+            }
         }
+        Jump();
+        _jumpPressed = false;
+        _doubleJumped = false;
 
-        if (_jumpPressed)
-        {
-            _rigidBody.AddForce(Vector3.up * JumpPower, ForceMode.VelocityChange);
-            _jumpPressed = false;
-        }
 
+    }
+
+    void Jump()
+    {
+        Vector3 v = _rigidBody.velocity;
+        v.y = 0f;
+        _rigidBody.velocity = v;
+        _rigidBody.AddForce(Vector3.up * JumpPower, ForceMode.VelocityChange);
     }
 }

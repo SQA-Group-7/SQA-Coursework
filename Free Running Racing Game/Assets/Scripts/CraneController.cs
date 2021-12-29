@@ -38,7 +38,7 @@ public class CraneController : MonoBehaviour
         GameObject duplicate = Instantiate(baseFrame);
 
         //Obtain the heigh of one frame
-        float height = transform.Find("CraneBaseGroup/CraneBaseFrame0").position.y - transform.Find("CraneBaseGroup/CraneBaseFrame1").position.y;
+        float height = transform.Find("CraneBaseGroup/CraneBaseFrame2").position.y - transform.Find("CraneBaseGroup/CraneBaseFrame3").position.y;
 
         for (int i = 1; i < 100; i++)
         {
@@ -52,6 +52,7 @@ public class CraneController : MonoBehaviour
                 duplicate.transform.position = above.position;
                 transform.Translate(new Vector3(0, height, 0));
                 duplicate.transform.Translate(new Vector3(0, height * -1, 0));
+                duplicate.transform.localScale = new Vector3(1,1,1);
                 break;
             }
         }
@@ -64,7 +65,7 @@ public class CraneController : MonoBehaviour
     {
 
         //Get the height of the base frame.
-        float height = transform.Find("CraneBaseGroup/CraneBaseFrame0").position.y - transform.Find("CraneBaseGroup/CraneBaseFrame1").position.y;
+        float height = transform.Find("CraneBaseGroup/CraneBaseFrame2").position.y - transform.Find("CraneBaseGroup/CraneBaseFrame3").position.y;
 
         for (int i = 1; i < 100; i++)
         {
