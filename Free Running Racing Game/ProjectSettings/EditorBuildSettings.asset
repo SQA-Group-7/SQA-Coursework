@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 1c2bb0485975ee04781261fe74f1214a
+  - enabled: 1
+    path: Assets/Scenes/EpicMap.unity
+    guid: 7182e838c3042e4488beba6634882102
   m_configObjects: {}

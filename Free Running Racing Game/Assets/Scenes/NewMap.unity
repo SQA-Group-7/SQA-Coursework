@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44719505, g: 0.49711448, b: 0.575162, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -484,6 +484,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6975201086595685764, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 6975201087086214941, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
       propertyPath: m_Name
       value: Jumper (1)
@@ -1177,6 +1181,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7184468904141931593, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 7184468904946478073, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: field of view
       value: 90
@@ -1603,6 +1611,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7184468904141931593, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 7184468904946478073, guid: c8211eb777c5955488f831895a2c4e84, type: 3}
       propertyPath: field of view
       value: 90
@@ -1688,6 +1700,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6975201086595685764, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 6975201087086214941, guid: 2f7da2d13608109468fa9ff3d1be22e4, type: 3}
       propertyPath: m_Name
       value: Jumper
