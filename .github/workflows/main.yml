@@ -3,7 +3,7 @@ name: GameCI
 on: 
   push:
   pull_request:
-  workflow_dispatch:
+#  workflow_dispatch:
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
